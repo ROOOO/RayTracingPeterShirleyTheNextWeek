@@ -1,10 +1,16 @@
+#pragma once
+
 #include "ray.h"
 #include "hitable.h"
 #include "texture.h"
 
 #ifdef _WIN32
-  #define srand48(x) srand((int)(x))
-  #define drand48() ((double)rand()/(RAND_MAX + 1.0))
+  #ifndef srand48
+    #define srand48(x) srand((int)(x))
+  #endif
+  #ifndef drand48
+    #define drand48() ((double)rand()/(RAND_MAX + 1.0))
+  #endif
 #endif
 vec3 random_in_unit_sphere() {
   vec3 p;

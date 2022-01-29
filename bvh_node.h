@@ -1,3 +1,5 @@
+#pragma once
+
 #include "hitable.h"
 
 class bvh_node : public hitable {
@@ -12,8 +14,12 @@ public:
 };
 
 #ifdef _WIN32
-  #define srand48(x) srand((int)(x))
-  #define drand48() ((double)rand()/(RAND_MAX + 1.0))
+  #ifndef srand48
+    #define srand48(x) srand((int)(x))
+  #endif
+  #ifndef drand48
+    #define drand48() ((double)rand()/(RAND_MAX + 1.0))
+  #endif
 #endif
 int box_compare(unsigned index, const void* a, const void* b) {
   aabb box_left, box_right;
